@@ -1,0 +1,32 @@
+Banco de dados 
+
+-- 1. Tabela PRODUTO (Cardápio e Estoque)
+CREATE TABLE PRODUTO (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    preco DECIMAL(10, 2) NOT NULL,
+    estoque INTEGER NOT NULL
+);
+
+-- 2. Tabela PEDIDO (Transações dos Alunos)
+CREATE TABLE PEDIDO (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    aluno_nome VARCHAR(255) NOT NULL,
+    horario TIMESTAMP NOT NULL,
+    status VARCHAR(50) NOT NULL, -- Ex: 'AGUARDANDO', 'PREPARANDO', 'PRONTO'
+    total DECIMAL(10, 2) NOT NULL
+);
+
+-- 3. Tabela ITEM_PEDIDO (Detalhes de cada pedido - Relacionamento N:M)
+CREATE TABLE ITEM_PEDIDO (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    pedido_id BIGINT NOT NULL,
+    produto_id BIGINT NOT NULL,
+    quantidade INTEGER NOT NULL,
+    
+    -- Definição das Chaves Estrangeiras (FK) para ligar as tabelas
+    FOREIGN KEY (pedido_id) REFERENCES PEDIDO(id),
+    FOREIGN KEY (produto_id) REFERENCES PRODUTO(id)
+);
+
+
