@@ -1,5 +1,7 @@
 Banco de dados 
 
+PRODUTO <--> ITEM PEDIDO <--> PEDIDO
+
 -- 1. Tabela PRODUTO (Cardápio e Estoque)
 CREATE TABLE PRODUTO (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
